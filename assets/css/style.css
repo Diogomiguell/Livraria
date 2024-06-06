@@ -53,3 +53,8 @@ form {
     background-color: #1d222c;
     color: #dddada;
 }
+
+i {
+    cursor: pointer;
+    font-size: 25px;
+}
