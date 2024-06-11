@@ -1,14 +1,25 @@
 <?php
 
-$dsn = "mysql:host=localhost;dbname=livraria";
-$user = "root";
-$password = "";
-$pdo = new PDO(
-    $dsn,
-    $user,
-    $password
-);
+class Conexao 
+{
+    public static function conectar($caminho)
+    {
+        $conf = parse_ini_file($caminho); 
 
-if ($pdo) {
-    echo "Usuário registrado!";
+        $dsn = "mysql:host={$conf['host']};dbname={$conf['dbname']}";
+
+        $pdo = new PDO(
+            $dsn,
+            $conf["user"],
+            $conf["password"]
+        );
+
+        if ($pdo) {
+            echo "Usuário registrado!";
+        }
+
+        return $pdo;
+    }
 }
+
+

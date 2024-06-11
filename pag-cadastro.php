@@ -21,9 +21,9 @@
           <input class="field" type="email" name="email" placeholder="E-mail">
           <input class="field" type="password" name="password" placeholder="Senha">
           <input class="field" type="password" name="password_confirmation" placeholder="Confirme a Senha">
-          <button type="submit" class="btn-login">Cadastrar-se</button>
+          <button type="submit" class="btn-login" name="cadastrar">Cadastrar-se</button>
       </form>
-      <p class="text-center">Já possui uma conta? <a class="text-decoration-none" href="login.php">Entre</a> aqui!</p>
+      <p class="text-center">Já possui uma conta? <a class="text-decoration-none" href="pag-login.php">Entre</a> aqui!</p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>

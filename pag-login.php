@@ -11,7 +11,7 @@
   <body>
     <?php
 
-
+    
 
     ?>
     <div class="box-login">
@@ -21,7 +21,7 @@
             <input class="field" type="password" name="password" placeholder="Senha">
             <button type="submit" class="btn-login">Entrar</button>
         </form>
-        <p class="text-center">Não tem uma conta? <a class="text-decoration-none" href="cadastro.php">Cadastre-se</a> aqui!</p>
+        <p class="text-center">Não tem uma conta? <a class="text-decoration-none" href="pag-cadastro.php">Cadastre-se</a> aqui!</p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
