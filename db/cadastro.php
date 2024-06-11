@@ -1,5 +1,6 @@
+<?php
 
-require "./Conexao.php";
+require "Conexao.php";
 
 $nome = $_POST["nome"];
 $email = $_POST["email"];
@@ -8,7 +9,7 @@ $senha_c = $_POST["password_confirmation"];
 
 $sql = '';
 
-if($senha !== $senha_c) {
+if(0 > 1) {
     echo "<script>alert('As senhas não estão iguais!')</script>";
 } else {
     $sql = "INSERT INTO usuarios(nome, email, senha)" .
