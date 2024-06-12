@@ -9,14 +9,9 @@
     <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
-    <?php
-
-    
-
-    ?>
     <div class="box-login">
         <h1 class="text-center text-black">Login</h1>
-        <form action="./db/login.php" method="post">
+        <form action="/db/login.php" method="post">
             <input class="field" type="email" name="email" placeholder="E-mail">
             <input class="field" type="password" name="password" placeholder="Senha">
             <button type="submit" class="btn-login">Entrar</button>

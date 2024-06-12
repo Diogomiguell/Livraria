@@ -9,14 +9,9 @@
     <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
-    <?php
-
-      
-
-    ?>
     <div class="box-login">
       <h1 class="text-center text-black">Cadastre-se</h1>
-      <form action="./db/cadastro.php" method="post">
+      <form action="/db/cadastro.php" method="post">
           <input class="field" type="text" name="name" placeholder="Nome">
           <input class="field" type="email" name="email" placeholder="E-mail">
           <input class="field" type="password" name="password" placeholder="Senha">
