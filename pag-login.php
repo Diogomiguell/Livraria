@@ -1,9 +1,3 @@
-<?php
-
-  include "db/login.php";
-
-?>
-
 <!doctype html>
 <html lang="pt-BR">
   <head>
@@ -16,11 +10,11 @@
   </head>
   <body>
     <div class="box-login">
-        <h1 class="text-center text-black">Login</h1>
+        <h1 class="text-center text-black">Entre</h1>
         <form action="/db/login.php" method="post">
             <input class="field" type="email" name="email" placeholder="E-mail">
             <input class="field" type="password" name="password" placeholder="Senha">
-            <input type="submit" name="dados" value="Entrar">
+            <input class="btn-login" type="submit" name="dados" value="Entrar">
         </form>
         <p class="text-center">Não tem uma conta? <a class="text-decoration-none" href="pag-cadastro.php">Cadastre-se</a> aqui!</p>
     </div>

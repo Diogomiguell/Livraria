@@ -1,9 +1,3 @@
-<?php
-
-  include "db/cadastro.php";
-
-?>
-
 <!doctype html>
 <html lang="pt-BR">
   <head>

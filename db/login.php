@@ -8,9 +8,9 @@ $passaword = $_POST['passaword'];
 $sql = "SELECT email, senha FROM usuarios WHERE email ";
 
 if ($sql) {
-     header("Location: ../dashboard.html");
+     header("Location: ../painel.html");
      return;
 } else {
-     header("Location: ../login.html");
+     header("Location: ../pag-login.php");
      echo "<script>alert('Email ou senha incorretos!')</script>";
 }

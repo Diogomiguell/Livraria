@@ -23,7 +23,7 @@ if(isset($_POST['dados']) && ($email and $senha) && !empty($nome) && password_ve
         ':email' => $email,
         ':senha' => $senha
     ]);
-    /* header("Location: ../dashboard.html"); */
+    /* header("Location: ../pag-login.php"); */
 } else {
     header("Location: ../pag-cadastro.php");
     $_SESSION['msg'] = "<p style='color: #ff0000'>Erro: verifique se suas informações estão corretas</p>";

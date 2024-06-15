@@ -1,0 +1,28 @@
+body {
+    background-color: #353b48;
+    height: 100vh;
+}
+
+.btn-login {
+    border: none;
+    background-color: #353b48;
+    width: 80px;
+    height: 40px;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-top: 6px;
+    transition: 0.2s;
+}
+
+.btn-login:hover {
+    background-color: #1d222c;
+    color: #dddada;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+}
