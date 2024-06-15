@@ -3,19 +3,15 @@
 session_start();
 
 $nome = $_POST["name"];
-$email = $_POST["email"];
-$senha = $_POST["password"];
+$email = filter_input($_POST["email"], FILTER_SANITIZE_EMAIL);
+$senha = password_hash($_POST["password"], FILTER_DEFAULT);
 $senha_c = $_POST["password_confirmation"];
-$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 require "Conexao.php";
 
 $sql = '';
 
-if($senha !== $senha_c /*|| empty($dados($_POST['cadastrar'])) */) {
-    header("Location: ../pag-cadastro.php");
-    $_SESSION['msg'] = "<p style='color: #ff0000'>Erro: verifique se suas informações estão corretas</p>";
-} else {
+if(isset($_POST['dados']) && ($email and $senha) && !empty($nome) && password_verify($senha, $senha_c) && strlen($senha) >= 8) {
     $sql = "INSERT INTO usuarios(nome, email, senha) VALUES(:nome, :email, :senha)";
 
     $conf = Conexao::conectar("conf.ini");
@@ -27,7 +23,8 @@ if($senha !== $senha_c /*|| empty($dados($_POST['cadastrar'])) */) {
         ':email' => $email,
         ':senha' => $senha
     ]);
-    header("Location: ../dashboard.html");
+    /* header("Location: ../dashboard.html"); */
+} else {
+    header("Location: ../pag-cadastro.php");
+    $_SESSION['msg'] = "<p style='color: #ff0000'>Erro: verifique se suas informações estão corretas</p>";
 }
-
-

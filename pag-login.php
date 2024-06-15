@@ -1,3 +1,9 @@
+<?php
+
+  include "db/login.php";
+
+?>
+
 <!doctype html>
 <html lang="pt-BR">
   <head>
@@ -14,7 +20,7 @@
         <form action="/db/login.php" method="post">
             <input class="field" type="email" name="email" placeholder="E-mail">
             <input class="field" type="password" name="password" placeholder="Senha">
-            <button type="submit" class="btn-login">Entrar</button>
+            <input type="submit" name="dados" value="Entrar">
         </form>
         <p class="text-center">Não tem uma conta? <a class="text-decoration-none" href="pag-cadastro.php">Cadastre-se</a> aqui!</p>
     </div>

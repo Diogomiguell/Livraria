@@ -1,3 +1,9 @@
+<?php
+
+  include "db/cadastro.php";
+
+?>
+
 <!doctype html>
 <html lang="pt-BR">
   <head>
@@ -16,7 +22,7 @@
           <input class="field" type="email" name="email" placeholder="E-mail">
           <input class="field" type="password" name="password" placeholder="Senha">
           <input class="field" type="password" name="password_confirmation" placeholder="Confirme a Senha">
-          <button type="submit" class="btn-login" name="cadastrar">Cadastrar-se</button>
+          <input class="btn-login" type="submit" name="dados" value="Cadastrar">
       </form>
       <p class="text-center">Já possui uma conta? <a class="text-decoration-none" href="pag-login.php">Entre</a> aqui!</p>
     </div>
