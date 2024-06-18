@@ -3,9 +3,9 @@
 session_start();
 
 $nome = $_POST["name"];
-$email = filter_input($_POST["email"], FILTER_SANITIZE_EMAIL);
+$email = $_POST["email"];
 $senha = password_hash($_POST["password"], FILTER_DEFAULT);
-$senha_c = $_POST["password_confirmation"];
+$senha_c = password_hash($_POST["password_confirmation"], FILTER_DEFAULT);
 
 require "Conexao.php";
 
@@ -23,8 +23,8 @@ if(isset($_POST['dados']) && ($email and $senha) && !empty($nome) && password_ve
         ':email' => $email,
         ':senha' => $senha
     ]);
-    /* header("Location: ../pag-login.php"); */
+    header("Location: ../pag-login.php");
 } else {
     header("Location: ../pag-cadastro.php");
-    $_SESSION['msg'] = "<p style='color: #ff0000'>Erro: verifique se suas informações estão corretas</p>";
+    echo "<p style='color: #ff0000'>Erro: verifique se suas informações estão corretas</p>";
 }
