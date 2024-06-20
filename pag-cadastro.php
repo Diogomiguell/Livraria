@@ -16,7 +16,7 @@
           <input class="field" type="email" name="email" placeholder="E-mail">
           <input class="field" type="password" name="password" placeholder="Senha">
           <input class="field" type="password" name="password_confirmation" placeholder="Confirme a Senha">
-          <input class="btn-login" type="submit" name="dados" value="Cadastrar">
+          <input id="b-cads" type="submit" name="dados" value="Cadastrar">
       </form>
       <p class="text-center">Já possui uma conta? <a class="text-decoration-none" href="pag-login.php">Entre</a> aqui!</p>
     </div>

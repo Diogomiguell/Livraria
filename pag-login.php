@@ -14,7 +14,7 @@
         <form action="/db/login.php" method="post">
             <input class="field" type="email" name="email" placeholder="E-mail">
             <input class="field" type="password" name="password" placeholder="Senha">
-            <input class="btn-login" type="submit" name="dados" value="Entrar">
+            <input id="b-login" type="submit" name="dados" value="Entrar">
         </form>
         <p class="text-center">Não tem uma conta? <a class="text-decoration-none" href="pag-cadastro.php">Cadastre-se</a> aqui!</p>
     </div>
