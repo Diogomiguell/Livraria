@@ -2,10 +2,11 @@
 
 require "Conexao.php";
 
+$nome = $_POST['name'];
 $email = $_POST['email'];
 $passaword = $_POST['passaword'];
 
-$sql = "SELECT email, senha FROM usuarios WHERE email ";
+$sql = "SELECT email, senha FROM usuarios WHERE email=:email AND senha=:senha AND nome=:nom";
 
 if ($sql) {
      header("Location: ../painel.html");
