@@ -4,27 +4,37 @@ session_start();
 
 $nome = $_POST["name"];
 $email = $_POST["email"];
-$senha = password_hash($_POST["password"], FILTER_DEFAULT);
-$senha_c = password_hash($_POST["password_confirmation"], FILTER_DEFAULT);
+$senha = $_POST["password"];
+$senha_c = $_POST["password_confirmation"];
 
 require "Conexao.php";
 
-$sql = '';
+$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-if(isset($_POST['dados']) && ($email and $senha) && !empty($nome) && password_verify($senha, $senha_c) && strlen($senha) >= 8) {
-    $sql = "INSERT INTO usuarios(nome, email, senha) VALUES(:nome, :email, :senha)";
+$senha_Hash = password_hash($senha, PASSWORD_DEFAULT);
+$senha_c_Hash = password_hash($senha_c, PASSWORD_DEFAULT);
 
-    $conf = Conexao::conectar("conf.ini");
+if (!empty($dados['cadastro'])) {
+    if (password_verify($senha, $senha_Hash) === password_verify($senha_c, $senha_c_Hash) && strlen($senha) >= 8) {
+        header("Location: ../painel.html");
+    } else {
+        echo '<p style="color: red;">ERROR: As senha estão inválidas!</p>';
+        header("Location: ../cadastro-login.html");
+    }
 
-    $stmt = $conf->prepare($sql);
+    $sql = "INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)";
+
+    $pdo = Conexao::conectar('conf.ini');
+
+    $stmt = $pdo->prepare($sql);
 
     $qtdLinhas = $stmt->execute([
         ':nome' => $nome,
         ':email' => $email,
-        ':senha' => $senha
+        ':senha' => $senha 
     ]);
-    header("Location: ../painel.html");
 } else {
-    header("Location: ../pag-cadastro.php");
-    echo "<p style='color: #ff0000'>Erro: verifique se suas informações estão corretas</p>";
+    unset($dados);
+    echo '<p style="color: red;">ERROR: Você não preencheu os campos corretamente!</p>';
+    header("Location: ../cadastro-login.html");
 }

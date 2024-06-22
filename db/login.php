@@ -6,7 +6,7 @@ $nome = $_POST['name'];
 $email = $_POST['email'];
 $passaword = $_POST['passaword'];
 
-$sql = "SELECT email, senha FROM usuarios WHERE email=:email AND senha=:senha AND nome=:nom";
+$sql = "SELECT email, senha FROM usuarios WHERE email=:email AND senha=:senha AND nome=:nome";
 
 if ($sql) {
      header("Location: ../painel.html");
