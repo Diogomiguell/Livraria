@@ -1,40 +1,39 @@
 <?php
 
-session_start();
+try {
 
-$nome = $_POST["name"];
-$email = $_POST["email"];
-$senha = $_POST["password"];
-$senha_c = $_POST["password_confirmation"];
+    if (isset($_POST['dadosCadastro'])) {
+        
+        $nome = $_POST["name"];
+        $email = $_POST["email"];
+        $senha = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $senha_c = $_POST["password_confirmation"];
+        
+        if (empty($nome) || empty($email) || empty($senha) || empty($senha_c)) {
+            $erroC = '<p style="color: red;">ERROR: Você não preencheu os campos corretamente!</p>';
+        } else if (!password_verify($senha, $senha_c) || strlen($senha) < 8 || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $erroC = '<p style="color: red;">ERROR: Email ou senhas iválidos!</p>';
+        } else {
 
-require "Conexao.php";
+            require "Conexao.php";
+    
+            $sql = "INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)";
+    
+            $pdo = Conexao::conectar('conf.ini');
+    
+            $stmt = $pdo->prepare($sql);
+    
+            $qtdLinhas = $stmt->execute([
+                ":nome" => $nome,
+                ":email" => $email,
+                ":senha" => $senha 
+            ]);
+            
+            $_SESSION['username'] = $nome;
+            header("Location: ../painel.html");
 
-$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
-$senha_Hash = password_hash($senha, PASSWORD_DEFAULT);
-$senha_c_Hash = password_hash($senha_c, PASSWORD_DEFAULT);
-
-if (!empty($dados['cadastro'])) {
-    if (password_verify($senha, $senha_Hash) === password_verify($senha_c, $senha_c_Hash) && strlen($senha) >= 8) {
-        header("Location: ../painel.html");
-    } else {
-        echo '<p style="color: red;">ERROR: As senha estão inválidas!</p>';
-        header("Location: ../cadastro-login.html");
-    }
-
-    $sql = "INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)";
-
-    $pdo = Conexao::conectar('conf.ini');
-
-    $stmt = $pdo->prepare($sql);
-
-    $qtdLinhas = $stmt->execute([
-        ':nome' => $nome,
-        ':email' => $email,
-        ':senha' => $senha 
-    ]);
-} else {
-    unset($dados);
-    echo '<p style="color: red;">ERROR: Você não preencheu os campos corretamente!</p>';
-    header("Location: ../cadastro-login.html");
+        } 
+    }              
+} catch(PDOException $err) {
+    $erroC = '<p style="color: red;>ERROR: Nome de usuário ou email já cadastrados!</p>';
 }

@@ -37,3 +37,17 @@ footer {
     width: 100%;
     bottom: 0%;
 }
+
+#drop {
+    padding-right: 5px;
+    background-color: transparent;
+}
+
+#drop button{  
+    background-color: transparent;
+    border: none;
+}
+
+#drop ul li {
+    width: 10px;
+}
