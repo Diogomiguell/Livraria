@@ -6,7 +6,7 @@
         session_start();
 
         if (!isset($_SESSION['username'])) {
-            header('Location: cadastro-login.html);
+            header('Location: cadastro-login.php');
             exit;
         }
 
@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="links">
             <ul class="navbar-nav mt-3" >
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="painel.php">
                         Home
                     </a>
                 </li>
@@ -60,7 +60,11 @@
           </div>
     </nav>
 
-    
+    <div class="p-2 mt-lg-5">
+        <h1 class="text-light">
+            Olá <?php echo $_SESSION['username']; ?>, seja bem-vindo(a) à nossa livraria!?>
+        </h1>
+    </div>
 
     <footer style="background: linear-gradient(to right, #e2e2e2, #d4c4f8);">
         <span data-v-e1bce400="">Flor de Feijão™</span> 

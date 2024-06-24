@@ -14,10 +14,6 @@ class Conexao
             $conf["password"]
         );
 
-        if ($pdo) {
-            echo "Conexão com o banco de dados realizada com sucesso!";
-        }
-
         return $pdo;
     }
 }
