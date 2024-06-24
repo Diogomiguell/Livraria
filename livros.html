@@ -6,9 +6,21 @@
         session_start();
 
         if (!isset($_SESSION['username'])) {
-            header('Location: cadastro-login.html);
-            exit;
+            header('Location: cadastro-login.php');  
         }
+
+        require "Conexao.php";
+
+        $sql = "SELECT * FROM livros WHERE ";
+        
+        $pdo = Conexao::conectar("conf.ini");
+        
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':email', $email);
+
+        $stmt->execute();
 
     ?>
     <meta charset="UTF-8">
@@ -32,7 +44,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="links">
             <ul class="navbar-nav mt-3" >
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="painel.php">
                         Home
                     </a>
                 </li>
@@ -60,7 +72,11 @@
           </div>
     </nav>
 
-    
+    <div style="display: flex; justify-content: end; margin-top: 8px; margin-right: 15px;">
+        <button type="button" class="btn btn-login" style="background-color: #6337ca;">
+            <a class="text-decoration-none" style="color: white;" href="crud/insert.php">+ Adicionar livros</a>
+        </button>
+    </div>
 
     <footer style="background: linear-gradient(to right, #e2e2e2, #d4c4f8);">
         <span data-v-e1bce400="">Flor de Feijão™</span> 

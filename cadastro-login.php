@@ -29,10 +29,10 @@
                     }
 
                 ?>       
-                <input class="field" type="text" name="name" placeholder="Nome">
-                <input class="field" type="email" name="email" placeholder="E-mail">
-                <input class="field" type="password" name="password" placeholder="Senha">
-                <input class="field" type="password" name="password_confirmation" placeholder="Confirme a Senha">
+                <input class="field" type="text" name="name" placeholder="Nome" required>
+                <input class="field" type="email" name="email" placeholder="E-mail" required>
+                <input class="field" type="password" name="password" placeholder="Senha" required>
+                <input class="field" type="password" name="password_confirmation" placeholder="Confirme a Senha" required>
                 <input class="btnSub" id="b-cads" type="submit" name="dadosCadastro" value="Cadastrar">
             </form>
         </div>
@@ -48,9 +48,9 @@
                     }
 
                 ?>       
-                <input class="field" type="text" name="name" placeholder="Nome">
-                <input class="field" type="email" name="email" placeholder="E-mail">
-                <input class="field" type="password" name="password" placeholder="Senha">
+                <input class="field" type="text" name="name" placeholder="Nome" required>
+                <input class="field" type="email" name="email" placeholder="E-mail" required>
+                <input class="field" type="password" name="password" placeholder="Senha" required>
                 <a href="#" style="color: #f2f1e2;">Esqueceu sua senha?</a>
                 <input class="btnSub" id="b-login" type="submit" name="dadosLogin" value="Entrar">
             </form>

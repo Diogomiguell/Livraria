@@ -10,6 +10,8 @@
             exit;
         }
 
+       
+
     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,15 +56,15 @@
                 <i class='fas fa-user-circle fa-4x' style='color:#62578e'></i> 
             </button>
             <ul class="dropdown-menu">
-                <li><button class="dropdown-item" href="#" name="sair">Perfil</button></li>
-                <li><button class="dropdown-item" href="#">Sair</button></li>
+                <li><button class="dropdown-item" href="#">Perfil</button></li>
+                <li><a class="dropdown-item" href="logout.php">Sair</a></li>
             </ul>
           </div>
     </nav>
 
     <div class="p-2 mt-lg-5">
         <h1 class="text-light">
-            Olá <?php echo $_SESSION['username']; ?>, seja bem-vindo(a) à nossa livraria!?>
+            Olá <?php echo $_SESSION['username']; ?>, seja bem-vindo(a) à nossa livraria!
         </h1>
     </div>
 
