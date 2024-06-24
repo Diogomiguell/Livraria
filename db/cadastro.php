@@ -30,6 +30,7 @@ try {
             session_start();
 
             $_SESSION['username'] = $nome;
+            $_SESSION['user_id'] = $user['id'];
             header("Location: painel.php");
 
         } else {

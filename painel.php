@@ -2,16 +2,11 @@
 <html lang="pt-BR">
 <head>
     <?php
-
         session_start();
 
         if (!isset($_SESSION['username'])) {
             header('Location: cadastro-login.php');
-            exit;
         }
-
-       
-
     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +34,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="livros.html">
+                    <a class="nav-link" href="livros.php">
                         Meus livros
                     </a>
                 </li>

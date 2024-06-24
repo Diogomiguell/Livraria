@@ -3,8 +3,8 @@
 <head>
     <?php
 
-        include "db/cadastro.php";
-        include "db/login.php";
+        include_once "db/cadastro.php";
+        include_once "db/login.php";
 
     ?>
     <meta charset="UTF-8">
