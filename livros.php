@@ -8,19 +8,8 @@
             header('Location: cadastro-login.php');  
         }
 
-        if (isset($_SESSION['excluir'])) {
-            echo <<<FORM
-                <form>
-                    <input type="hidden" name="excluir" value="true">
-
-                </form>
-            FORM;
-            if (isset($_POST['sim'])) {
-                include_once 'crud/delete.php';
-                unset($_POST);
-                unset($_SESSION['excluir']);
-            }
-            
+        if (isset($_POST['editar'])) {
+            header('Location: edit-livros.php');
         }
 
        include_once "crud/select.php";
@@ -29,9 +18,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">    <link rel="stylesheet" href="assets/css/dashboard-style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/dashboard-style.css">
     <link rel="shortcut icon" href="assets/imgs/flor_de_feijao_logo.ico" type="image/x-icon">
-    <title>Livraria - Dashboard</title>
+    <title>Livraria - Meus Livros</title>
 </head>
 <body>
 
@@ -85,6 +75,31 @@
         </button>
     </div>
 
+    <?php 
+        if (isset($_POST['deletar'])) {
+            include_once 'crud/delete.php';
+
+            unset($_SESSION['excluir']);
+        }
+    ?>
+    
+    <?php
+    if (isset($_POST['excluir'])) {
+        echo <<<DELETAR
+        <div style="display:flex; justify-content:center;">
+            <form action="" method="post" style="display: grid; place-items: center; background-color:#6337ca; width:400px; height:110px; border-radius:10px">
+                <p style="font-size: 14pt; color:#ffffff; margin-left">Você realmente quer excluir esse livro?</p>
+                <div>
+                    <button type="submit" name="deletar" class="btn btn-danger">Sim</button>
+                    <button type="submit" name="cancelar" class="btn btn-light">Não</button>
+                </div>
+            </form>
+            </div>
+        DELETAR;
+    }
+    ?>
+
+   
     <div style="margin-top: 20px; display: flex; flex-direction: row; justify-content: center;">
         <table class="table table-striped table-hover" style="width: 95%; border-radius: 7px;">
             <thead>
@@ -110,12 +125,15 @@
                                 <td>{$livro['editora']}</td>
                                 <td>{$livro['ano_publi']}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" name="editar">
+                                <form action="" method="post">
+                                    <button type="submit" class="btn btn-primary" name="editar">
                                         <i class="bi bi-pencil"></i>
                                     </button>
-                                    <button type="button" class="btn btn-danger" name="excluir">
-                                        <i class="bi bi-trash3"></i>
+                                    <button type="submit" class="btn btn-danger" name="excluir">
+                                            <i class="bi bi-trash3"></i>
                                     </button>
+                                </form>
+                                   
                                   </td>;
                             </tr>
                         TABELA;
