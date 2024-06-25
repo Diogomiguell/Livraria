@@ -109,7 +109,7 @@
                     <th scope="col">Edição</th>
                     <th scope="col">Editora</th>
                     <th scope="col">Ano de pulblicação</th>
-                    <th scope="col" style="border-top-right-radius: 16px;">...</th>
+                    <th scope="col" style="border-top-right-radius: 16px;">Ações</th>
                 </tr>
             </thead>
             <tbody>

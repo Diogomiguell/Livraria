@@ -7,18 +7,18 @@ if (isset($_POST['addLivro'])) {
     $autor = $_POST['autor'];
     $edicao = $_POST['edicao'];
     $editora = $_POST['editora'];
-    $ano_publi = $_POST['ano'];
+    $ano_publi = $_POST['ano_publi'];
 
     require_once "db/Conexao.php";
         
-    $sql = "INSERT INTO livros (user_id, titulo, subtitulo, autor, edicao, editora, ano_publi) VALUES (:id_user, :titulo, :subtitulo, :autor, :edicao, :editora, :ano_publi)";
+    $sql = "INSERT INTO livros (user_id, titulo, subtitulo, autor, edicao, editora, ano_publi) VALUES (:user_id, :titulo, :subtitulo, :autor, :edicao, :editora, :ano_publi)";
 
     $pdo = Conexao::conectar('conf.ini');
 
     $stmt = $pdo->prepare($sql);
 
     $qtdLinhas = $stmt->execute([
-        ":id_user" => $_SESSION['user_id'],
+        ":user_id" => $_SESSION['user_id'],
         ":titulo" => $titulo,
         ":subtitulo" => $subT,
         ":autor" => $autor,

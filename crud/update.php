@@ -22,21 +22,33 @@ if (!empty($_GET['id'])) {
     $edicao = $livro['edicao'];
     $editora = $livro['editora'];
     $ano_publi = $livro['ano_publi'];
+
+    if (isset($_POST['editLivro'])) {
+
+        $titulo = $_POST['titulo'];
+        $subtitulo = $_POST['subtitulo'];
+        $autor = $_POST['autor'];
+        $edicao = $_POST['edicao'];
+        $editora = $_POST['editora'];
+        $ano_publi = $_POST['ano_publi'];
+
+        $sql = "UPDATE livros SET titulo=:titulo, subtitulo=:subtitulo, autor=:autor, edicao=:edicao, editora=:editora, ano_publi=:ano_publi WHERE id=:id";
+    
+        $pdo = Conexao::conectar('conf.ini');
         
-    $sql = "UPDATE livros SET titulo=:titulo, subtitulo=:subtitulo, autor=:autor, edicao=:edicao, editora=:editora, ano_publi=:ano_publi WHERE id=:id";
+        $stmt = $pdo->prepare($sql);
+    
+        $modificacoes = $stmt->execute([
+            ":titulo" => $titulo,
+            ":subtitulo" => $subtitulo,
+            ":autor" => $autor,
+            ":edicao" => $edicao,
+            ":editora" => $editora,
+            ":ano_publi" => $ano_publi,
+            ":id" => $_GET['id']
+        ]);
+    
+        header('Location: livros.php');
 
-    $stmt = $pdo->prepare($sql);
-
-    $qtdLinhas = $stmt->execute([
-        ":titulo" => $titulo,
-        ":subtitulo" => $subtitulo,
-        ":autor" => $autor,
-        ":edicao" => $edicao,
-        ":editora" => $editora,
-        ":ano_publi" => $ano_publi,
-        ":id" => $_GET['id']
-    ]);
-
-    header('Location: livros.php');
-
+    }
 }
