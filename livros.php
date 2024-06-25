@@ -2,26 +2,28 @@
 <html lang="pt-BR">
 <head>
     <?php
-
         session_start();
 
         if (!isset($_SESSION['username'])) {
             header('Location: cadastro-login.php');  
         }
 
-       /*  require "Conexao.php";
+        if (isset($_SESSION['excluir'])) {
+            echo <<<FORM
+                <form>
+                    <input type="hidden" name="excluir" value="true">
 
-        $sql = "SELECT * FROM livros WHERE ";
-        
-        $pdo = Conexao::conectar("conf.ini");
-        
-        $stmt = $pdo->prepare($sql);
+                </form>
+            FORM;
+            if (isset($_POST['sim'])) {
+                include_once 'crud/delete.php';
+                unset($_POST);
+                unset($_SESSION['excluir']);
+            }
+            
+        }
 
-        $stmt->bindParam(':nome', $nome);
-        $stmt->bindParam(':email', $email);
-
-        $stmt->execute(); */
-
+       include_once "crud/select.php";
     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,12 +69,17 @@
             </button>
             <ul class="dropdown-menu">
                 <li><button class="dropdown-item" href="#" name="sair">Perfil</button></li>
-                <li><button class="dropdown-item" href="#">Sair</button></li>
+                <li><a class="dropdown-item" href="logout.php">Sair</a></li>
             </ul>
           </div>
     </nav>
 
-    <div style="display: flex; justify-content: end; margin-top: 8px; margin-right: 15px;">
+    <div style="display: flex; justify-content: space-between; margin-right: 15px;" class="mt-lg-5">
+        <div class="p-2 mt-lg-1">
+            <h1 class="text-light">
+                Olá <?php echo $_SESSION['username']; ?>, aqui estão seus livros:
+            </h1>
+        </div>
         <button type="button" id="btn-login" style="min-width: 145px;">
             <a class="text-decoration-none" style="color: white;" href="add-livros.php">+ Adicionar livros</a>
         </button>
@@ -81,28 +88,37 @@
     <div style="margin-top: 20px; display: flex; flex-direction: row; justify-content: center;">
         <table class="table table-striped table-hover" style="width: 95%; border-radius: 7px;">
             <thead>
-                <tr>
-                    <th scope="col">#</th>                   
-                    <th scope="col">Título</th>
+                <tr class="justify-content-between">                
+                    <th scope="col" style="border-top-left-radius: 16px;">Título</th>
                     <th scope="col">Subtítulo</th>
                     <th scope="col">Autor</th>
                     <th scope="col">Edição</th>
                     <th scope="col">Editora</th>
                     <th scope="col">Ano de pulblicação</th>
+                    <th scope="col" style="border-top-right-radius: 16px;">...</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                    while (false) {
-                        echo "<tr>";
-                            echo "<td></td>";
-                            echo "<td></td>";
-                            echo "<td></td>";
-                            echo "<td></td>";
-                            echo "<td></td>";
-                            echo "<td></td>";
-                            echo "<td></td>";
-                        echo "</tr>";
+                    while ($livro = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo <<<TABELA
+                            <tr>
+                                <td>{$livro['titulo']}</td>
+                                <td>{$livro['subtitulo']}</td>
+                                <td>{$livro['autor']}</td>
+                                <td>{$livro['edicao']}</td>
+                                <td>{$livro['editora']}</td>
+                                <td>{$livro['ano_publi']}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" name="editar">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger" name="excluir">
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
+                                  </td>;
+                            </tr>
+                        TABELA;
                     }
                 ?>
             </tbody>

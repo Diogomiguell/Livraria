@@ -11,14 +11,14 @@ if (isset($_POST['addLivro'])) {
 
     require_once "db/Conexao.php";
         
-    $sql = "INSERT INTO livros (id_user, titulo, subtitulo, autor, edicao, editora, ano_publi) VALUES (:id_user, :titulo, :subtitulo, :autor, :edicao, :editora, :ano_publi)";
+    $sql = "INSERT INTO livros (user_id, titulo, subtitulo, autor, edicao, editora, ano_publi) VALUES (:id_user, :titulo, :subtitulo, :autor, :edicao, :editora, :ano_publi)";
 
     $pdo = Conexao::conectar('conf.ini');
 
     $stmt = $pdo->prepare($sql);
 
     $qtdLinhas = $stmt->execute([
-        "id_user" => $_SESSION['user_id'],
+        ":id_user" => $_SESSION['user_id'],
         ":titulo" => $titulo,
         ":subtitulo" => $subT,
         ":autor" => $autor,
@@ -30,4 +30,5 @@ if (isset($_POST['addLivro'])) {
     unset($_POST);
 
     header("Location: livros.php");   
-}    
+    
+}
