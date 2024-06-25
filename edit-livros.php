@@ -37,20 +37,14 @@
     <div class="container" id="container">
         <div class="form-container sign-up">
             <form action="" method="post">
-                <h1 style="color: #f2f1e2;">Adicionar Livro</h1>     
-                <?php
-                    if (isset($erroU)) {
-                        echo $erroU;
-                        unset($erroU);
-                    }
-                ?>       
-                <input class="field" type="text" name="titulo" placeholder="Título" required>
-                <input class="field" type="text" name="subtitulo" placeholder="Subtítulo" required>
-                <input class="field" type="text" name="autor" placeholder="Autor" required>
-                <input class="field" type="number" name="edicao" placeholder="Edição" required>
-                <input class="field" type="text" name="editora" placeholder="Editora" required>
-                <input class="field" type="number" name="ano" placeholder="Ano de publicação" required>
-                <input class="btnSub" id="b-cads" type="submit" name="editLivro" value="Editar">
+                <h1 style="color: #f2f1e2;">Editar Livro</h1>     
+                <input class="field" type="text" name="titulo" placeholder="Título" required value="<?= $titulo ?>"/>
+                <input class="field" type="text" name="subtitulo" placeholder="Subtítulo" required value="<?= $subtitulo ?>"/>
+                <input class="field" type="text" name="autor" placeholder="Autor" required value="<?= $autor?>">
+                <input class="field" type="number" name="edicao" placeholder="Edição" required value="<?= $edicao?>">
+                <input class="field" type="text" name="editora" placeholder="Editora" required value="<?= $editora?>">
+                <input class="field" type="number" name="ano_publi" placeholder="Ano de publicação" required value="<?= $ano_publi?>">
+                <input class="btnSub" id="b-cads" type="submit" name="editLivro" value="Aplicar">
             </form>
         </div>
     </div>    

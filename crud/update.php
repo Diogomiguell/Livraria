@@ -1,33 +1,42 @@
 <?php
 
-if (isset($_POST['editLivro'])) {
+if (!empty($_GET['id'])) {
     
-    $titulo = $_POST['titulo'];
-    $subT = $_POST['subtitulo'];
-    $autor = $_POST['autor'];
-    $edicao = $_POST['edicao'];
-    $editora = $_POST['editora'];
-    $ano_publi = $_POST['ano'];
-
     require_once "db/Conexao.php";
-        
-    $sql = "UPDATE INTO livros (user_id, titulo, subtitulo, autor, edicao, editora, ano_publi) VALUES (:id_user, :titulo, :subtitulo, :autor, :edicao, :editora, :ano_publi)";
+
+    $sql = "SELECT * FROM livros WHERE id=:id";
 
     $pdo = Conexao::conectar('conf.ini');
 
     $stmt = $pdo->prepare($sql);
 
     $qtdLinhas = $stmt->execute([
-        ":id_user" => $_SESSION['user_id'],
+        ":id" => $_GET['id']
+    ]);
+
+    $livro = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $titulo = $livro['titulo'];
+    $subtitulo = $livro['subtitulo'];
+    $autor = $livro['autor'];
+    $edicao = $livro['edicao'];
+    $editora = $livro['editora'];
+    $ano_publi = $livro['ano_publi'];
+        
+    $sql = "UPDATE livros SET titulo=:titulo, subtitulo=:subtitulo, autor=:autor, edicao=:edicao, editora=:editora, ano_publi=:ano_publi WHERE id=:id";
+
+    $stmt = $pdo->prepare($sql);
+
+    $qtdLinhas = $stmt->execute([
         ":titulo" => $titulo,
-        ":subtitulo" => $subT,
+        ":subtitulo" => $subtitulo,
         ":autor" => $autor,
         ":edicao" => $edicao,
         ":editora" => $editora,
-        ":ano_publi" => $ano_publi
+        ":ano_publi" => $ano_publi,
+        ":id" => $_GET['id']
     ]);
 
-    unset($_POST);
+    header('Location: livros.php');
 
-    header("Location: livros.php");
 }

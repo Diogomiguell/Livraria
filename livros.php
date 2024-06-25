@@ -9,7 +9,7 @@
         }
 
         if (isset($_POST['editar'])) {
-            header('Location: edit-livros.php');
+            header('Location: edit-livros.php?id=');
         }
 
        include_once "crud/select.php";
@@ -82,7 +82,7 @@
             unset($_SESSION['excluir']);
         }
     ?>
-    
+
     <?php
     if (isset($_POST['excluir'])) {
         echo <<<DELETAR
@@ -99,7 +99,6 @@
     }
     ?>
 
-   
     <div style="margin-top: 20px; display: flex; flex-direction: row; justify-content: center;">
         <table class="table table-striped table-hover" style="width: 95%; border-radius: 7px;">
             <thead>
@@ -126,8 +125,8 @@
                                 <td>{$livro['ano_publi']}</td>
                                 <td>
                                 <form action="" method="post">
-                                    <button type="submit" class="btn btn-primary" name="editar">
-                                        <i class="bi bi-pencil"></i>
+                                    <button type="button" class="btn btn-primary" name="editar">
+                                        <a class="text-decoration-none link-light" href="edit-livros.php?id={$livro['id']}"><i class="bi bi-pencil"></i></a>
                                     </button>
                                     <button type="submit" class="btn btn-danger" name="excluir">
                                             <i class="bi bi-trash3"></i>
